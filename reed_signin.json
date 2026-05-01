@@ -1,0 +1,62 @@
+{
+  "settings": {
+    "name": "Reed.co.uk Jobseeker Sign In — Alvian Zachry Faturrahman",
+    "headed": true,
+    "stop_on_error": false,
+    "keep_browser_open": true
+  },
+  "data": {
+    "email": "[EMAIL]",
+    "password": "[PASSWORD]"
+  },
+  "steps": [
+    {
+      "label": "Open sign-in page",
+      "action": "navigate",
+      "url": "https://www.reed.co.uk/account/SignIn"
+    },
+    {
+      "label": "Wait for page load",
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "label": "Reject Cookies (Optional)",
+      "action": "optional_click",
+      "selector": "#onetrust-reject-all-handler, button:has-text(\"Reject All\")",
+      "force": true
+    },
+    {
+      "label": "Fill Email",
+      "action": "fill",
+      "selector": "#signin_email",
+      "value": "{{email}}"
+    },
+    {
+      "label": "Fill Password",
+      "action": "fill",
+      "selector": "#signin_password",
+      "value": "{{password}}"
+    },
+    {
+      "label": "Wait for form validation",
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "label": "Click Sign In",
+      "action": "click",
+      "selector": "#signin_button",
+      "force": true,
+      "delay": 100
+    },
+    {
+      "label": "Verify Success",
+      "action": "assert_url_contains",
+      "keywords": [
+        "dashboard",
+        "account"
+      ]
+    }
+  ]
+}

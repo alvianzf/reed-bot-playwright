@@ -1,0 +1,173 @@
+{
+  "settings": {
+    "name": "Reed.co.uk Jobseeker Registration — Alvian Zachry Faturrahman",
+    "headed": true,
+    "stop_on_error": false
+  },
+  "data": {
+    "name": "Alvian Zachry Faturrahman",
+    "email": "[EMAIL]",
+    "password": "[PASSWORD]",
+    "position": "Software Engineer / Technical Leader",
+    "total_years_experience": "13",
+    "phone": "421905440035",
+    "country": "United Kingdom",
+    "location": "Scotland",
+    "city": "Dundee",
+    "postal_code": "DD1 1JA",
+    "salary": "48000",
+    "cv_path": "cv.pdf"
+  },
+  "steps": [
+    {
+      "label": "Open registration page",
+      "action": "navigate",
+      "url": "https://www.reed.co.uk/account/SignIn?reg=true#register"
+    },
+    {
+      "label": "Wait for page load",
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "label": "Fill Email",
+      "action": "fill",
+      "selector": "#signup_email",
+      "value": "{{email}}"
+    },
+    {
+      "label": "Fill Password",
+      "action": "fill",
+      "selector": "#signup_password",
+      "value": "{{password}}"
+    },
+    {
+      "label": "Wait for form validation",
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "label": "Click Next / Signup",
+      "action": "click",
+      "selector": "#signup_button",
+      "force": true,
+      "delay": 100
+    },
+    {
+      "label": "Wait for CV upload page",
+      "action": "wait",
+      "ms": 5000
+    },
+    {
+      "label": "Reject Cookies (Optional)",
+      "action": "optional_click",
+      "selector": "#onetrust-reject-all-handler, button:has-text(\"Reject All\")",
+      "force": true
+    },
+    {
+      "label": "Upload CV",
+      "action": "upload",
+      "selector": "input[data-qa=\"drop-input\"]",
+      "value": "{{cv_path}}"
+    },
+    {
+      "label": "Wait after CV upload file selection",
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "label": "Click Next/Continue after CV",
+      "action": "optional_click",
+      "selector": "button:has-text(\"Next\"), button:has-text(\"Continue\"), input[type=\"submit\"]"
+    },
+    {
+      "label": "Wait for Profile form",
+      "action": "wait",
+      "ms": 5000
+    },
+    {
+      "label": "Select Country",
+      "action": "select",
+      "selector": "select[name=\"country\"]",
+      "value": "{{country}}"
+    },
+    {
+      "label": "Wait after selecting Country",
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "label": "Fill First Name",
+      "action": "fill",
+      "selector": "input[name=\"forename\"]",
+      "value": "{{fn:split_name:0}}"
+    },
+    {
+      "label": "Fill Last Name",
+      "action": "fill",
+      "selector": "input[name=\"surname\"]",
+      "value": "{{fn:split_name:-1}}"
+    },
+    {
+      "label": "Fill Contact Number",
+      "action": "fill",
+      "selector": "input[name=\"phone\"]",
+      "value": "{{phone}}"
+    },
+    {
+      "label": "Fill Current Job Title",
+      "action": "fill",
+      "selector": "input[name=\"currentJobTitle\"]",
+      "value": "{{position}}"
+    },
+    {
+      "label": "Check Right to Work (No)",
+      "action": "click",
+      "selector": "input[name=\"workEligibility\"][value=\"ineligible\"]"
+    },
+    {
+      "label": "Fill Desired Job Title",
+      "action": "fill",
+      "selector": "input[name=\"desiredJobTitle\"]",
+      "value": "{{position}}"
+    },
+    {
+      "label": "Fill Salary",
+      "action": "fill",
+      "selector": "input[name=\"desiredMinimumSalary\"]",
+      "value": "{{salary}}"
+    },
+    {
+      "label": "Fill Postcode",
+      "action": "fill",
+      "selector": "input[name=\"postCode\"]",
+      "value": "{{postal_code}}"
+    },
+    {
+      "label": "Fill Work Location",
+      "action": "fill",
+      "selector": "input[name=\"desiredWorkLocation\"]",
+      "value": "Remote"
+    },
+    {
+      "label": "Wait before submit",
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "label": "Opt out of emails",
+      "action": "click",
+      "selector": "text=\"I'd prefer not to receive these emails\""
+    },
+    {
+      "label": "Submit Application",
+      "action": "click",
+      "selector": "button[data-qa=\"submit-application\"]"
+    },
+    {
+      "label": "Wait after submit",
+      "action": "wait",
+      "ms": 10000
+    }
+  ]
+}

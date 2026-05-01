@@ -1,0 +1,145 @@
+{
+  "settings": {
+    "name": "Reed.co.uk Job Application — Alvian Zachry Faturrahman",
+    "headed": true,
+    "stop_on_error": false,
+    "keep_browser_open": true
+  },
+  "data": {
+    "email": "[EMAIL]",
+    "password": "[PASSWORD]",
+    "job_url": "https://www.reed.co.uk/jobs/software-engineer-jobs"
+  },
+  "steps": [
+    {
+      "label": "Bypass Cloudflare (Optional)",
+      "action": "wait_for_selector",
+      "selector": "h2:has-text(\"security verification\")",
+      "state": "hidden",
+      "timeout": 15000
+    },
+    {
+      "label": "Sign In",
+      "action": "navigate",
+      "url": "https://www.reed.co.uk/account/SignIn"
+    },
+    {
+      "label": "Wait for page load",
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "label": "Reject Cookies (Optional)",
+      "action": "optional_click",
+      "selector": "#onetrust-reject-all-handler, button:has-text(\"Reject All\")",
+      "force": true
+    },
+    {
+      "label": "Fill Email",
+      "action": "fill",
+      "selector": "#signin_email",
+      "value": "{{email}}"
+    },
+    {
+      "label": "Fill Password",
+      "action": "fill",
+      "selector": "#signin_password",
+      "value": "{{password}}"
+    },
+    {
+      "label": "Wait for form validation",
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "label": "Click Sign In",
+      "action": "click",
+      "selector": "#signin_button",
+      "force": true,
+      "delay": 100
+    },
+    {
+      "label": "Wait for Dashboard",
+      "action": "wait",
+      "ms": 5000
+    },
+    {
+      "label": "Navigate to Job Post",
+      "action": "navigate",
+      "url": "{{job_url}}"
+    },
+    {
+      "label": "Bypass Cloudflare on Job Page (Optional)",
+      "action": "wait_for_selector",
+      "selector": "h2:has-text(\"security verification\")",
+      "state": "hidden",
+      "timeout": 15000
+    },
+    {
+      "label": "Wait for Job Page",
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "label": "Reject Cookies on Job Page (Optional)",
+      "action": "optional_click",
+      "selector": "#onetrust-reject-all-handler",
+      "force": true
+    },
+    {
+      "label": "Wait after cookies",
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "label": "Click Apply Now",
+      "action": "click",
+      "selector": "button:has-text(\"Apply now\")",
+      "force": true,
+      "delay": 200
+    },
+    {
+      "label": "Wait after Apply Now click",
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "label": "Wait for Application Modal",
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "label": "Answer 'Yes' to Experience Question (Optional)",
+      "action": "optional_click",
+      "selector": ".screening-questions_question__7lK2j:has-text(\"experience\") label:has-text(\"Yes\"), .screening-questions_question__7lK2j:has-text(\"years\") label:has-text(\"Yes\"), label:has-text(\"Yes\")",
+      "force": true
+    },
+    {
+      "label": "Answer 'No' to Right to Work (Optional)",
+      "action": "optional_click",
+      "selector": ".screening-questions_question__7lK2j:has-text(\"right to work\") label:has-text(\"No\"), .screening-questions_question__7lK2j:has-text(\"UK\") label:has-text(\"No\"), label:has-text(\"No\")",
+      "force": true
+    },
+    {
+      "label": "Answer Screening Questions (Optional)",
+      "action": "optional_click",
+      "selector": "button:has-text(\"Continue\"), button:has-text(\"Next\")",
+      "force": true
+    },
+    {
+      "label": "Submit Application",
+      "action": "click",
+      "selector": "button:has-text(\"Submit application\")",
+      "force": true,
+      "delay": 200
+    },
+    {
+      "label": "Verify Applied",
+      "action": "assert_url_contains",
+      "keywords": [
+        "success",
+        "applied"
+      ]
+    }
+  ]
+}
