@@ -2,4 +2,4 @@
 venv/
 __pycache__
 cv.pdf
-DS_Store
+.DS_Store
