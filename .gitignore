@@ -3,3 +3,4 @@ venv/
 __pycache__
 cv.pdf
 .DS_Store
+sluzby_config.json
